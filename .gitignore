@@ -1,0 +1,13 @@
+# Node
+backend/node_modules
+backend/dist
+backend/.env
+
+# Foundry
+contracts/lib
+contracts/out
+contracts/cache
+
+# OS / editor
+.DS_Store
+*.swp
