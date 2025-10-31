@@ -11,3 +11,10 @@ contracts/cache
 # OS / editor
 .DS_Store
 *.swp
+
+
+# Docs
+docs/
+
+# Dotenv file
+.env

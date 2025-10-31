@@ -27,8 +27,9 @@ contract NFTMarket is ITokenReceiver {
 
     //events
     event NFTListed(uint256 indexed listingId, address seller, address nftContract, uint256 tokenId, uint256 price);
-    event NFTSold(uint256 indexed listingId, address seller, address indexed buyer, address nftContract, uint256 tokenId, uint256 price);
-    event NFTListingCalcelled(uint256 indexed listingId);
+    event TokenReceived(uint256 indexed listingId, address seller, address buyer, address nftContract, uint256 tokenId, uint256 price);
+    event BuyNFT(uint256 indexed listingId, address seller, address buyer, address nftContract, uint256 tokenId, uint256 price);
+    event NFTListingCancelled(uint256 indexed listingId);
 
     //constructor
     constructor(address _paymentToken) {
@@ -71,7 +72,7 @@ contract NFTMarket is ITokenReceiver {
 
         listing.isActive = false;
 
-        emit NFTListingCalcelled(_listingId);
+        emit NFTListingCancelled(_listingId);
 
     }
 
@@ -91,7 +92,7 @@ contract NFTMarket is ITokenReceiver {
 
         IERC721(listing.nftContract).transferFrom(listing.seller, msg.sender, listing.tokenId);
 
-        emit NFTSold(_listingId, listing.seller, msg.sender, listing.nftContract, listing.tokenId, listing.price);
+        emit BuyNFT(_listingId, listing.seller, msg.sender, listing.nftContract, listing.tokenId, listing.price);
     }
 
 
@@ -118,7 +119,7 @@ contract NFTMarket is ITokenReceiver {
         require(success, "NFTMarket: transfer tokens failed");
 
         IERC721(listing.nftContract).transferFrom(listing.seller, from, listing.tokenId);
-        emit NFTSold(listingId, listing.seller, msg.sender, listing.nftContract, listing.tokenId, listing.price);
+        emit TokenReceived(listingId, listing.seller, msg.sender, listing.nftContract, listing.tokenId, listing.price);
 
 
         return true;
