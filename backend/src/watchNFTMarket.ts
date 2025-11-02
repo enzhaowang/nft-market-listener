@@ -5,12 +5,13 @@ import {
     publicActions,
     webSocket,
 } from "viem";
-import { foundry } from "viem/chains";
+import { foundry, sepolia } from "viem/chains";
 import dotenv from "dotenv";
 
 dotenv.config();
 
-const NFTMARKET_ADDRESS = "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0";
+//sepolia testnet nftmarket address
+const NFTMARKET_ADDRESS = "0xc6d5648f91A0c2F0ce6F7F4BA3d206B650FDD0D3";
 
 // 定义合约 ABI，只包含需要监听的事件
 const NFTMarketABI = [
@@ -61,8 +62,8 @@ const NFTMarketABI = [
 const main = async () => {
     // 创建公共客户端
     const publicClient = createPublicClient({
-        chain: foundry,
-        transport: webSocket(process.env.RPC_URL!),
+        chain: sepolia,
+        transport: webSocket(process.env.SEPOLIA_RPC_URL!),
     }).extend(publicActions);
 
     console.log('开始监听 NFT Market 事件...');

@@ -11,7 +11,7 @@ contract NFTMarketDeploy is Script {
     function run() public {
         vm.startBroadcast(vm.envUint("PRIVATE_KEY"));
 
-        new NFTMarket(address(0x5FbDB2315678afecb367f032d93F642f64180aa3));
+        new NFTMarket(address(0xD6E941AdC2622698FC9ca1767aa357D82c8B3381));
 
         vm.stopBroadcast();
     }
