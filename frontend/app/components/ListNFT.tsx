@@ -17,7 +17,7 @@ export function ListNFT() {
       abi: NFTMarket,
       address: "0xc6d5648f91A0c2F0ce6F7F4BA3d206B650FDD0D3", 
       functionName: "list",
-      args: [nftContract, BigInt(price), BigInt(tokenId)],
+      args: [nftContract, BigInt(Number(price) * 10**18), BigInt(tokenId)],
     });
   };
 
@@ -38,10 +38,10 @@ export function ListNFT() {
         className="p-2 border rounded"
       />
       <input
-        type="text"
+        type="number"
         value={price}
         onChange={(e) => setPrice(e.target.value)}
-        placeholder="Price"
+        placeholder="Price (in ETH)"
         className="p-2 border rounded"
       />
       <button

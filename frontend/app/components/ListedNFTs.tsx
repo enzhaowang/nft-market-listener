@@ -80,7 +80,7 @@ export function ListedNFTs() {
               <p>Listing ID: {listing.id}</p>
               <p>NFT Contract: {listing.nftContract}</p>
               <p>Token ID: {Number(listing.tokenId)}</p>
-              <p>Price: {Number(listing.price)}</p>
+              <p>Price: {Number(listing.price) / 10**18} ETH</p>
               <p>Seller: {listing.seller}</p>
             </div>
           ))}
