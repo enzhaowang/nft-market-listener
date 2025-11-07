@@ -9,7 +9,7 @@ export function MintNFT() {
   const { writeContract } = useWriteContract();
   const { address } = useAccount();
 
-  const myNftContractAddress = "0xYOUR_MYNFT_CONTRACT_ADDRESS"; // <<< REPLACE THIS
+  const myNftContractAddress = "0x426e923eb578637bf4D2e1e31Fdd838DDe0EFC47"; // <<< REPLACE THIS
 
   const handleSubmit = (e: React.FormEvent) => {
     console.log("MintNFT handleSubmit called");
@@ -18,6 +18,7 @@ export function MintNFT() {
       alert("Please connect your wallet first.");
       return;
     }
+    console.log("Minting NFT with URI:", tokenURIs);
     writeContract({
       abi: MyNFT,
       address: myNftContractAddress as `0x${string}`,

@@ -50,8 +50,13 @@ export function MyNFTs() {
 
       setLoading(true);
       try {
-        const allNFTsBalance = 10; // Assuming a maximum of 100 NFTs for simplicity
-
+        const allNFTsBalance = await publicClient.readContract({
+          abi: MyNFT,
+          address: myNftContractAddress as `0x${string}`,
+          functionName: "balanceOf",
+          args: [address],
+        });
+        
         const nfts: any[] = [];
         for (let i = 0; i < Number(allNFTsBalance); i++) {
 
@@ -102,6 +107,13 @@ export function MyNFTs() {
     fetchUserNFTs();
   }, [address, publicClient]);
 
+  function converIpfsToHttp(url: string) {
+    if (url.startsWith("ipfs://")) {
+      return `https://ipfs.io/ipfs/${url.replace("ipfs://", "")}`;
+    }
+    return url;
+  }
+
   return (
     <div className="container mx-auto p-4">
       <h2 className="text-3xl font-bold mb-6 text-center text-purple-600">My NFTs</h2>
@@ -115,7 +127,7 @@ export function MyNFTs() {
             <div key={nft.id} className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
               {nft.metadata?.image ? (
                 <img
-                  src={nft.metadata.image}
+                  src={converIpfsToHttp(nft.metadata.image)}
                   alt={nft.metadata.name || `NFT ${nft.tokenId}`}
                   className="w-full h-64 object-cover"
                   onError={(e) => {
