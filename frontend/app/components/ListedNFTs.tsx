@@ -4,13 +4,14 @@ import { useEffect, useState } from "react";
 import { useReadContract, usePublicClient } from "wagmi";
 import NFTMarket from "../contracts/abi/NFTMarket.json";
 import { it } from "node:test";
+import { MYNFT_MARKET_ADDRESS } from "../constant/contract";
 
 export function ListedNFTs() {
   const [listings, setListings] = useState<any[]>([]);
   const publicClient = usePublicClient();
   const { data: nextListingIdData } = useReadContract({
     abi: NFTMarket,
-    address: "0xc6d5648f91A0c2F0ce6F7F4BA3d206B650FDD0D3", 
+    address: MYNFT_MARKET_ADDRESS as `0x${string}`, 
     functionName: "nextListingId",
   });
 
@@ -36,7 +37,7 @@ export function ListedNFTs() {
         listingPromises.push(
           publicClient.readContract({
             abi: NFTMarket,
-            address: "0xc6d5648f91A0c2F0ce6F7F4BA3d206B650FDD0D3",
+            address: MYNFT_MARKET_ADDRESS as `0x${string}`,
             functionName: "listings",
             args: [BigInt(i)],
           })

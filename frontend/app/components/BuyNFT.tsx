@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useWriteContract } from "wagmi";
 import NFTMarket from "../contracts/abi/NFTMarket.json";
-
+import { MYNFT_MARKET_ADDRESS } from "../constant/contract";
 
 export function BuyNFT() {
   const [listingId, setListingId] = useState("");
@@ -13,7 +13,7 @@ export function BuyNFT() {
     e.preventDefault();
     writeContract({
       abi: NFTMarket,
-      address: "0x5FbDB2315678afecb367f032d93F642f64180aa3", // Replace with your NFTMarket contract address
+      address: MYNFT_MARKET_ADDRESS as `0x${string}`, // Replace with your NFTMarket contract address
       functionName: "buyNFT",
       args: [BigInt(listingId)],
     });

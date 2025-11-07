@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useWriteContract } from "wagmi";
 import NFTMarket from "../contracts/abi/NFTMarket.json";
+import { MYNFT_MARKET_ADDRESS } from "../constant/contract";
 
 
 export function ListNFT() {
@@ -15,7 +16,7 @@ export function ListNFT() {
     e.preventDefault();
     writeContract({
       abi: NFTMarket,
-      address: "0xc6d5648f91A0c2F0ce6F7F4BA3d206B650FDD0D3", 
+      address: MYNFT_MARKET_ADDRESS as `0x${string}`, 
       functionName: "list",
       args: [nftContract, BigInt(Number(price) * 10**18), BigInt(tokenId)],
     });

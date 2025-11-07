@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { useWriteContract, useAccount } from "wagmi";
-import MyNFT from "./abi/MyNFT.json"; // Assuming MyNFT ABI is available
+import MyNFT from "../contracts/abi/MyNFT.json"; // Assuming MyNFT ABI is available
 import NFTMarket from "../contracts/abi/NFTMarket.json"; // For approving to the marketplace
+import { MYNFT_MARKET_ADDRESS } from "../constant/contract";
 
 export function ApproveNFT() {
   const [nftContractAddress, setNftContractAddress] = useState<string>("");
@@ -35,7 +36,7 @@ export function ApproveNFT() {
 
     writeContract({
       abi: MyNFT,
-      address: myNftContractAddress as `0x${string}`,
+      address: MYNFT_MARKET_ADDRESS as `0x${string}`,
       functionName: "approve", // Standard ERC721 approve function
       args: [operatorAddress, BigInt(tokenId)],
     });

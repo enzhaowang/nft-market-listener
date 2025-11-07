@@ -3,13 +3,13 @@
 import { useState } from "react";
 import { useWriteContract, useAccount } from "wagmi";
 import MyNFT from "../contracts/abi/MyNFT.json"; // Assuming MyNFT ABI is available
+import { MYNFT_ADDRESS } from "../constant/contract";
 
 export function MintNFT() {
   const [tokenURIs, setTokenURIs] = useState<string>("");
   const { writeContract } = useWriteContract();
   const { address } = useAccount();
 
-  const myNftContractAddress = "0x426e923eb578637bf4D2e1e31Fdd838DDe0EFC47"; // <<< REPLACE THIS
 
   const handleSubmit = (e: React.FormEvent) => {
     console.log("MintNFT handleSubmit called");
@@ -21,7 +21,7 @@ export function MintNFT() {
     console.log("Minting NFT with URI:", tokenURIs);
     writeContract({
       abi: MyNFT,
-      address: myNftContractAddress as `0x${string}`,
+      address: MYNFT_ADDRESS as `0x${string}`,
       functionName: "mintNFT",
       args: [address, tokenURIs],
     });

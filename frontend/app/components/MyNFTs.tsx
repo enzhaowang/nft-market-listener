@@ -5,6 +5,7 @@ import { useAccount, useReadContract, useWriteContract, usePublicClient } from "
 import NFTMarket from "../contracts/abi/NFTMarket.json";
 import MyNFT from "../contracts/abi/MyNFT.json"; // Corrected import path
 import { formatEther } from "viem";
+import { MYNFT_ADDRESS, MYNFT_MARKET_ADDRESS } from "../constant/contract";
 
 interface NFTMetadata {
   name?: string;
@@ -20,24 +21,22 @@ export function MyNFTs() {
   const [userNFTs, setUserNFTs] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
-  const myNftContractAddress = "0x426e923eb578637bf4D2e1e31Fdd838DDe0EFC47"; // <<< REPLACE THIS
-  const nftMarketContractAddress = "0xc6d5648f91A0c2F0ce6F7F4BA3d206B650FDD0D3"; // From ListNFT.tsx
 
   const handleApprove = (tokenId: number) => {
     writeContract({
       abi: MyNFT,
-      address: myNftContractAddress as `0x${string}`,
+      address: MYNFT_ADDRESS as `0x${string}`,
       functionName: "approve",
-      args: [nftMarketContractAddress, BigInt(tokenId)],
+      args: [MYNFT_MARKET_ADDRESS, BigInt(tokenId)],
     });
   };
 
   const handleList = (tokenId: number, price: number) => {
     writeContract({
       abi: NFTMarket,
-      address: nftMarketContractAddress as `0x${string}`,
+      address: MYNFT_MARKET_ADDRESS as `0x${string}`,
       functionName: "list",
-      args: [myNftContractAddress as `0x${string}`, BigInt(price * 10**18), BigInt(tokenId)],
+      args: [MYNFT_ADDRESS as `0x${string}`, BigInt(price * 10**18), BigInt(tokenId)],
     });
   };
 
@@ -52,25 +51,25 @@ export function MyNFTs() {
       try {
         const allNFTsBalance = await publicClient.readContract({
           abi: MyNFT,
-          address: myNftContractAddress as `0x${string}`,
+          address: MYNFT_ADDRESS as `0x${string}`,
           functionName: "balanceOf",
           args: [address],
         });
-        
+
         const nfts: any[] = [];
         for (let i = 0; i < Number(allNFTsBalance); i++) {
 
           
           const tokenURI = await publicClient.readContract({
             abi: MyNFT,
-            address: myNftContractAddress as `0x${string}`,
+            address: MYNFT_ADDRESS as `0x${string}`,
             functionName: "tokenURI",
             args: [BigInt(i)],
           });
 
           const owner = await publicClient.readContract({
             abi: MyNFT,
-            address: myNftContractAddress as `0x${string}`,
+            address: MYNFT_ADDRESS as `0x${string}`,
             functionName: "ownerOf",
             args: [BigInt(i)],
           });
