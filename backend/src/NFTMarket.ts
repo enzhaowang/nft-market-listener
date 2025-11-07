@@ -131,17 +131,17 @@ const main = async () => {
 
 
 
-    //========address1 account mintNFT
-    // const nftContract = getContract({
-    //     address: MyNFT_ADDRESS,
-    //     abi: MyNFT_ABI,
-    //     client: {
-    //         public: publicClient,
-    //         wallet: walletClient1,
-    //     },
-    // });
+    //========address account mintNFT
+    const nftContract = getContract({
+        address: MyNFT_ADDRESS,
+        abi: MyNFT_ABI,
+        client: {
+            public: publicClient,
+            wallet: walletClient,
+        },
+    });
     // const mintNFTtx = await nftContract.write.mintNFT([
-    //     `${address1}`,
+    //     `${address}`,
     //     "ipfs://bafkreihgyyx4a5qsi4fxotxmqitngegzobmplmwzz4durcdkp3fokd6j24"
     // ]);
     // console.log(` 调用 mintNFTtx 方法的 transaction hash is ${mintNFTtx}`);
@@ -152,13 +152,13 @@ const main = async () => {
     // console.log(receiptOfMintNFT.logs);
 
     // //====approve the NFT to the NFTMarket
-    // const approveNFTtx = await nftContract.write.approve([
-    //     `${NFTMARKET_ADDRESS}`,
-    //     1
-    // ]);
-    // const receiptofApprove = await publicClient.waitForTransactionReceipt({ hash: approveNFTtx });
-    // console.log(`交易状态: ${receiptofApprove.status === 'success' ? '成功' : '失败'}`);
-    // console.log(receiptofApprove.logs);
+    const approveNFTtx = await nftContract.write.approve([
+        `${NFTMARKET_ADDRESS}`,
+        2
+    ]);
+    const receiptofApprove = await publicClient.waitForTransactionReceipt({ hash: approveNFTtx });
+    console.log(`交易状态: ${receiptofApprove.status === 'success' ? '成功' : '失败'}`);
+    console.log(receiptofApprove.logs);
 
 
 
@@ -195,18 +195,18 @@ const main = async () => {
     // console.log(`交易状态: ${buyNFTReceipt.status === 'success' ? '成功' : '失败'}`);
 
     //====Token Received
-    const tokenIdnumer1 = encodeAbiParameters(
-        [{type: 'uint256'}],
-        [1n]
-    );
-    const tokenReceivedTx = await erc20Contract.write.transferWithCallbackAndData([
-        `${NFTMARKET_ADDRESS}`,
-        parseEther("1"),
-        tokenIdnumer1
-    ]);
+//     const tokenIdnumer1 = encodeAbiParameters(
+//         [{type: 'uint256'}],
+//         [1n]
+//     );
+//     const tokenReceivedTx = await erc20Contract.write.transferWithCallbackAndData([
+//         `${NFTMARKET_ADDRESS}`,
+//         parseEther("1"),
+//         tokenIdnumer1
+//     ]);
 
-   const tokenReceivedReceipt = await publicClient.waitForTransactionReceipt({hash: tokenReceivedTx});
-   console.log(`交易状态: ${tokenReceivedReceipt.status === 'success' ? '成功' : '失败'}`);
+//    const tokenReceivedReceipt = await publicClient.waitForTransactionReceipt({hash: tokenReceivedTx});
+//    console.log(`交易状态: ${tokenReceivedReceipt.status === 'success' ? '成功' : '失败'}`);
    
 
 
