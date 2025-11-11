@@ -168,7 +168,7 @@ async function main(){
 
 
     //get signature
-    const signature = await getERC20TransactionSignature(account, walletClient, publicClient, "0xC3637C58e72D5f4A8570D3b86D6875F1eC5fAa3B" as `0x${string}`, "1");
+    const signature = await getERC20TransactionSignature(account, walletClient, publicClient, "0x4aB1A869E9FB11F5E104222cF2fD5970B063A358" as `0x${string}`, "1");
     console.log("Transaction signature:", signature);
     //send signed transaction
     const txHash: Hash = await publicClient.sendRawTransaction({ serializedTransaction: signature });
@@ -181,7 +181,7 @@ async function main(){
 
     //get erc20 balance
     const erc20BalanceFrom =  await getERC20Balance(address);
-    const erc20BalanceTo =  await getERC20Balance("0xC3637C58e72D5f4A8570D3b86D6875F1eC5fAa3B" as `0x${string}`);
+    const erc20BalanceTo =  await getERC20Balance("0x4aB1A869E9FB11F5E104222cF2fD5970B063A358" as `0x${string}`);
     console.log("erc20BalanceFrom Balance:", erc20BalanceFrom, "MY_ERC20");
     console.log("erc20BalanceTo Balance:", erc20BalanceTo, "MY_ERC20");
 
