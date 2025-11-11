@@ -9,7 +9,8 @@
     "watch": "node --loader ts-node/esm src/watchNFTMarket.ts",
     "nftmarket": "node --loader ts-node/esm src/nftmarket.ts",
     "buildtxkeystore": "node --loader ts-node/esm src/wallet/build_tx_keystore.ts",
-    "cliwallet": "node --loader ts-node/esm src/wallet/cli_wallet.ts"
+    "cliwallet": "node --loader ts-node/esm src/wallet/cli_wallet.ts",
+    "contractwallet": "node --loader ts-node/esm src/wallet/contract_wallet.ts"
   },
   "keywords": [],
   "author": "",
