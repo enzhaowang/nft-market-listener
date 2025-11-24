@@ -11,7 +11,9 @@
     "buildtxkeystore": "node --loader ts-node/esm src/wallet/build_tx_keystore.ts",
     "cliwallet": "node --loader ts-node/esm src/wallet/cli_wallet.ts",
     "contractwallet": "node --loader ts-node/esm src/wallet/contract_wallet.ts",
-    "start:permit-signer": "node --loader ts-node/esm src/permitSigner.ts"
+    "start:permit-signer": "node --loader ts-node/esm src/permitSigner.ts",
+    "scanerc20": "node --loader ts-node/esm src/ScanERC20Transfer.ts",
+    "erc20server": "node --loader ts-node/esm src/server/erc20server.ts "
   },
   "keywords": [],
   "author": "",
@@ -27,6 +29,7 @@
     "ethereumjs-wallet": "^1.0.2",
     "express": "^5.1.0",
     "hdkey": "^2.1.0",
+    "mongodb": "^7.0.0",
     "shamirs-secret-sharing": "^2.0.0",
     "typescript": "^5.7.2",
     "viem": "^2.38.5",
