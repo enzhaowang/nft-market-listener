@@ -15,12 +15,13 @@ contract NFTMarket is ITokenReceiver {
     IExtendedERC20 public paymentToken;
 
     struct Listing {
-        address seller;
-        address nftContract;
         uint256 tokenId;
         uint256 price;
+        address seller;
+        address nftContract;
         bool isActive;
     }
+
 
     mapping(uint256 => Listing) public listings;
     uint256 public nextListingId;

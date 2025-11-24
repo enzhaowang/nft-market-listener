@@ -75,10 +75,10 @@ contract NFTMarketTest is Test {
         assertEq(listingId, 0);
 
         (
-            address lSeller,
-            address lNft,
             uint256 lTokenId,
             uint256 lPrice,
+            address lSeller,
+            address lNft,
             bool isActive
         ) = nftMarket.listings(listingId);
 
