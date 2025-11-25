@@ -27,11 +27,8 @@ const main = async () => {
     const lengthHex = await publicClient.getStorageAt({
         address: CONTRACT_ADDRESS,
         slot: toHex(0n),
-    });
+    }) as string;
 
-    if(!lengthHex) {
-        throw new Error("lengthHex is undefined");
-    }
 
     const length = BigInt(lengthHex);
     console.log('locks length = ', length.toString());
@@ -63,12 +60,12 @@ const main = async () => {
         const secondSlotHex = await publicClient.getStorageAt({
             address: CONTRACT_ADDRESS,
             slot: toHex(secondSlot),
-        });
+        }) as string;
 
         const user = '0x' + firstSlotHex?.slice(-40);
         const startTimeHex = '0x' + firstSlotHex?.slice(-16-40, -40);
         const startTime = Number(BigInt(startTimeHex))
-        if(secondSlotHex === undefined) throw new Error("secondSlotHex is undefined")
+        
         const amount = BigInt(secondSlotHex);
 
         console.log(
