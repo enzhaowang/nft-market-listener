@@ -13,7 +13,9 @@
     "contractwallet": "node --loader ts-node/esm src/wallet/contract_wallet.ts",
     "start:permit-signer": "node --loader ts-node/esm src/permitSigner.ts",
     "scanerc20": "node --loader ts-node/esm src/ScanERC20Transfer.ts",
-    "erc20server": "node --loader ts-node/esm src/server/erc20server.ts "
+    "erc20server": "node --loader ts-node/esm src/server/erc20server.ts ",
+    "loadprivatedata": "node --loader ts-node/esm src/loadPrivateDatafromContract.ts "
+
   },
   "keywords": [],
   "author": "",
