@@ -14,8 +14,8 @@
     "start:permit-signer": "node --loader ts-node/esm src/permitSigner.ts",
     "scanerc20": "node --loader ts-node/esm src/ScanERC20Transfer.ts",
     "erc20server": "node --loader ts-node/esm src/server/erc20server.ts ",
-    "loadprivatedata": "node --loader ts-node/esm src/loadPrivateDatafromContract.ts "
-
+    "loadprivatedata": "node --loader ts-node/esm src/loadPrivateDatafromContract.ts ",
+    "merkledistributor": "node --loader ts-node/esm src/merkle_distributor/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -31,6 +31,7 @@
     "ethereumjs-wallet": "^1.0.2",
     "express": "^5.1.0",
     "hdkey": "^2.1.0",
+    "merkletreejs": "^0.6.0",
     "mongodb": "^7.0.0",
     "shamirs-secret-sharing": "^2.0.0",
     "typescript": "^5.7.2",
